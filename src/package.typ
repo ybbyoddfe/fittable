@@ -35,7 +35,7 @@
   /// the `auto` columns would be added with `1fr` to fill the remaining space.
   /// Otherwise, the layout would fall back to the default layout.
   ///
-  /// -> auto | int | relative | fracton | array
+  /// -> auto | int | relative | fraction | array
   columns: (),
   /// Variadic parameters are the content and other parameters passed to `func`.
   /// Note that `colspan` and `rowspan` are not supported now.
@@ -80,7 +80,7 @@
       (acc, (spec, intus)) => acc + if is-auto(spec) { intus } else if is-fr(spec) { 0pt } else { spec },
     )
 
-  if specified >= size.width {
+  if specified.to-absolute() >= size.width {
     // Not enough space, fall back to the default layout.
     return func(columns: columns, ..children)
   }
